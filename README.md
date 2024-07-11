@@ -1,4 +1,4 @@
-Seminario Angular 2024
+Seminario Angular 2024 (SEDE TANDIL)
 
 Trabajo Practico realizado por Matias Sebastian Suarez Dni:28299280 LU:244499
 
