@@ -1,0 +1,41 @@
+<h1>Lista de Articulos</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Cantidad</th>
+            <th>Compra</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @for (article of articles; track article.name) {
+            <tr [ngClass]="{'clearance': article.clearance}">
+                <td><img class="img-thumbnail" [src]="article.image" alt="{{ article.name }}"></td>
+                <td>{{ article.name }}</td>
+                <td>{{ article.type }}</td>
+                <td>{{ article.price | currency}}</td>
+              @if (article.stock >0) {
+                <td>{{ article.stock }}</td>
+              } @else {
+                <td class="margin-warning badge text-bg-warning" >SIN STOCK</td>
+              }
+              <td>
+                <app-input-integer [(quantity)]="article.quantity"  [max]="article.stock" *ngIf="article.stock" (maxReached)="maxReached($event)"></app-input-integer>
+              </td>
+              <td>
+                <button class="btn btn-primary" (click)="addToCart(article)">Comprar</button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td class="badge text-bg-warning" colspan="4">No hay articulos para mostrar.</td>
+            </tr>
+          }
+        
+    </tbody>
+</table>
